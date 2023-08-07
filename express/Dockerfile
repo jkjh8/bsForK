@@ -15,5 +15,7 @@ RUN yarn global add pm2
 
 EXPOSE 3000
 
+ENV TZ=Asia/Seoul
+
 # CMD [ "pm2-runtime", "start", "config.json" ]
 CMD [ "yarn", "start"]
