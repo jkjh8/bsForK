@@ -1,0 +1,6 @@
+.env
+/public
+/media
+/data
+/templates
+./devcontainer

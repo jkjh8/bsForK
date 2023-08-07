@@ -1,0 +1,40 @@
+# @format
+
+version: '4'
+
+services:
+  proxy:
+    image: nginx:latest
+    container_name: proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
+    restart: 'unless-stopped'
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    # expose:
+    #   - '27017'
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./data/mongo:/data/db
+    command: mongod
+
+  express:
+    build:
+      context: ./express
+    container_name: express
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongodb
+    restart: 'unless-stopped'
+    environment:
+      SESSION_PASS: $SESSION_PASS
+    volumes:
+      - ./public:/usr/app/public
+      - ./media:/usr/app/media
