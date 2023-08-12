@@ -12,6 +12,9 @@ services:
     volumes:
       - ./proxy/nginx.conf:/etc/nginx/nginx.conf
     restart: 'unless-stopped'
+    depends_on:
+      - mongodb
+      - express
 
   mongodb:
     image: mongo:latest
@@ -23,6 +26,7 @@ services:
     volumes:
       - ./data/mongo:/data/db
     command: mongod
+    restart: 'unless-stopped'
 
   express:
     build:
