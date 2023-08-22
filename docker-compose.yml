@@ -26,7 +26,7 @@ services:
     volumes:
       - ./data/mongo:/data/db
     command: mongod
-    restart: 'unless-stopped'
+    restart: 'allways'
 
   express:
     build:
