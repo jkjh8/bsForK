@@ -10,7 +10,7 @@ WORKDIR /usr/app
 
 RUN yarn
 RUN yarn global add nodemon
-RUN yarn global add pm2
+# RUN yarn global add pm2
 
 
 EXPOSE 3000
